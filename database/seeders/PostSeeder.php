@@ -13,6 +13,28 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        Post::factory(10)->create();
+        $posts = collect([
+            [
+                'title' => 'Post one',
+                'slug' =>'post-one',
+                'excerpt' => 'Excertp of post one',
+                'description' => 'Descriptoin of pst one',
+                'is_published' => true,
+                'min_to_read' => 2
+            ],
+            [
+                'title' => 'Post two',
+                'slug' =>'post-two',
+                'excerpt' => 'Excertp of post two',
+                'description' => 'Descriptoin of pst two',
+                'is_published' => true,
+                'min_to_read' => 34
+               ]
+        ]);
+
+        $posts->each(function ($post) {
+            Post::create($post);
+        });
+       
     }
 }
